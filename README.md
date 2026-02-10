@@ -1,59 +1,61 @@
 # Survey Results Analysis (Stack Overflow Developer Survey)
 
-Exploratory Data Analysis (EDA) and simple modeling on the **Stack Overflow Developer Survey** dataset, focused mainly on **annual compensation** (`ConvertedCompYearly`) and how it relates to factors like **country, education, and experience**.
+Exploratory analysis of the **Stack Overflow Developer Survey** dataset, with a focus on **annual compensation** (`ConvertedCompYearly`) and how it relates to factors like **country, education, and experience**.
 
-This repository contains a Jupyter Notebook: `Survey_results_analysis.ipynb`.
+Repository contents:
+- `Survey_results_analysis.ipynb`
 
 ---
 
-## What’s inside
+## Overview
 
-The notebook includes:
+The notebook covers:
 
-- **Dataset overview** (shape, column types, basic statistics)
-- **Missing values** analysis
-- **Outlier handling** (filters salaries to `< 300,000 USD` to reduce distortion)
-- **Salary distribution** plots (histogram / boxplots)
-- **Salary comparisons**:
-  - by **country** (e.g., top countries by participation + salary comparisons)
-  - by **education level**
-  - by **developer role** (`DevType`)
-  - by **remote work type** (`RemoteWork`)
-- **Feature engineering**
-  - salary categories (low / medium / high)
-  - `IsHighIncome` flag (salary > 100,000 USD)
-  - education encoded to numeric (`EduLevelNumeric`)
-  - experience parsing (e.g., converting `YearsCode` text to numeric)
-  - optional age conversion to numeric (`AgeNumeric`)
-- **Correlation heatmap** for numeric features
-- **Baseline classification model**
-  - Logistic Regression to predict `IsHighIncome` using:
+- Dataset overview (shape, column types, summary stats)
+- Missing values inspection
+- Outlier handling (filters salaries to `< 300,000 USD` to reduce distortion)
+- Salary distribution visualizations (histogram / boxplots)
+- Salary comparisons by:
+  - Country
+  - Education level
+  - Developer role (`DevType`)
+  - Remote work type (`RemoteWork`)
+- Feature engineering:
+  - Salary categories (low / medium / high)
+  - `IsHighIncome` indicator (salary > 100,000 USD)
+  - Education encoded to numeric (`EduLevelNumeric`)
+  - Experience parsing (converting `YearsCode` to numeric)
+  - Optional age conversion (`AgeNumeric`)
+- Correlation heatmap for numeric features
+- Baseline classification model:
+  - Logistic Regression predicting `IsHighIncome` using:
     - `YearsCode`
     - `EduLevelNumeric`
-  - Evaluation via confusion matrix + classification report
+  - Evaluation with confusion matrix + classification report
+
+---
+
+## Libraries used
+
+- **pandas**
+- **numpy**
+- **matplotlib**
+- **seaborn**
+- **scikit-learn**
 
 ---
 
 ## Data
 
-The notebook expects the Stack Overflow survey file:
-
+The notebook uses the Stack Overflow survey file:
 - `survey_results_public.csv`
 
-Place it in the **project root** (same folder as the notebook), or update the path inside the notebook.
-
-You can download the dataset from the official Stack Overflow Developer Survey page (choose the year you want and ensure the column names match the notebook).
+Make sure the dataset year/columns match what the notebook expects (especially `ConvertedCompYearly`, `YearsCode`, `EdLevel`, etc.).
 
 ---
 
-## Requirements
+## Notes
 
-- Python 3.9+ (recommended)
-- Jupyter Notebook / JupyterLab
-
-Python libraries used:
-- `pandas`
-- `numpy`
-- `matplotlib`
-- `seaborn`
-- `scikit-learn`
+- Compensation values are filtered to reduce the influence of extreme outliers on plots/correlations.
+- Several survey fields are stored as text ranges; the notebook converts key fields (e.g., experience and age) into numeric values when needed.
+- Many columns contain missing values; analyses focus on rows where relevant data exists.
